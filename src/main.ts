@@ -5,7 +5,7 @@ import { Logger, RequestMethod, ValidationPipe } from '@nestjs/common';
 import { RpcCustomExceptionFilter } from './contexts/shared/exceptions/rpc-custom-exception.filter';
 
 async function bootstrap() {
-  const logger = new Logger('[client-gateway][main]');
+  const logger = new Logger('[client-gateway-ms][main]');
 
   const app = await NestFactory.create(AppModule);
 
@@ -36,6 +36,6 @@ async function bootstrap() {
 
   console.log('Health Check configured');
 
-  logger.log(`<service> client-gateway running on port ${envs.port}`);
+  logger.log(`<service> client-gateway-ms running on port ${envs.port}`);
 }
 bootstrap();
