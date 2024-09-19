@@ -28,6 +28,6 @@ export class UsersController {
 
   @Get()
   findAll() {
-    return this.client.send({ cmd: 'users.create-user' }, {});
+    // return this.client.send({ cmd: 'users.create-user' }, {});
   }
 }
