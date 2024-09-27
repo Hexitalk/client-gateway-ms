@@ -26,7 +26,6 @@ export class AuthController {
     @Body('params') registerUserDto: RegisterUserDto,
     @NatsPayloadFromRequestApi() payload: NatsPayloadInterface<RegisterUserDto>,
   ) {
-       
     payload.data = registerUserDto;
     return this.client.send({ cmd: 'auth.register-user' }, payload).pipe(
       catchError((error) => {

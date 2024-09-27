@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
+
     if (!token) {
       throw new UnauthorizedException('Token not found');
     }
@@ -33,7 +34,7 @@ export class AuthGuard implements CanActivate {
       };
 
       const { user: authUser, token: newToken } = await firstValueFrom(
-        this.client.send({ cmd: 'auth.verify-user' }, payload),
+        this.client.send({ cmd: 'auth.verify-token' }, payload),
       );
 
       request['authUser'] = authUser;
