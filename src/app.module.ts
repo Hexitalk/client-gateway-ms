@@ -6,13 +6,6 @@ import { HubModule } from './contexts/hub/infraestructure/hub.module';
 import { ChatsModule } from './contexts/chats/infraestructure/chats.module';
 
 @Module({
-  imports: [
-    // ProductsModule,
-    NatsModule,
-    AuthModule,
-    UsersModule,
-    HubModule,
-    ChatsModule,
-  ],
+  imports: [NatsModule, AuthModule, UsersModule, HubModule, ChatsModule],
 })
 export class AppModule {}
