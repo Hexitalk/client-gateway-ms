@@ -1,20 +1,25 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
     args:
-      [
-        'build',
-        '-t',
-        'europe-southwest1-docker.pkg.dev/hexitalk/hexitalk-img-registry/client-gateway-ms',
-        '-f',
-        'dockerfile.prod',
-        '--platform=linux/amd64',
-        '.',
-      ]
+      - -c
+      - |
+        docker build -t europe-southwest1-docker.pkg.dev/hexitalk/hexitalk-img-registry/client-gateway-ms -f dockerfile.prod --platform=linux/amd64 --build-arg CLIENT_GATEWAY_MS_PORT=$$CLIENT_GATEWAY_MS_PORT --build-arg NATS_PORT=$$NATS_PORT .
+    secretEnv: ['CLIENT_GATEWAY_MS_PORT', 'NATS_PORT']
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       [
         'push',
         'europe-southwest1-docker.pkg.dev/hexitalk/hexitalk-img-registry/client-gateway-ms',
       ]
+
+availableSecrets:
+  secretManager:
+    - versionName: projects/188352291421/secrets/client_gateway_ms_port/versions/1
+      env: 'CLIENT_GATEWAY_MS_PORT'
+    - versionName: projects/188352291421/secrets/nats_port/versions/1
+      env: 'NATS_PORT'
+
 options:
   logging: CLOUD_LOGGING_ONLY
