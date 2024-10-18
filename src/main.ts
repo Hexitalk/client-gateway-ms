@@ -27,7 +27,8 @@ async function bootstrap() {
   app.useGlobalFilters(new RpcCustomExceptionFilter());
 
   app.enableCors({
-    origin: 'http://localhost:4200',
+    // origin: 'http://localhost:4200',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
