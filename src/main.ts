@@ -30,7 +30,7 @@ async function bootstrap() {
     // origin: 'http://localhost:4200',
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
+    credentials: false,
   });
 
   await app.listen(envs.port);
