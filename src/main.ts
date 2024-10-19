@@ -37,6 +37,8 @@ async function bootstrap() {
 
   console.log('Health Check configured');
 
+  console.log('Update container 19-10');
+
   logger.log(`<service> client-gateway-ms running on port ${envs.port}`);
 }
 bootstrap();
